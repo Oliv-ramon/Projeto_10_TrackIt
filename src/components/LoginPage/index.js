@@ -3,32 +3,40 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "react-loader-spinner";
+import UserContext from "../../context/UserContext";
 
 
 function LoginPage () {
     const navigate = useNavigate();
+    const { setUserData } = useContext(UserContext);
     const [formData, setFormData] = useState({
         email: "",
-        password: "",
-        loading: false
+        password: ""
     });
+    const [loading, setLoading] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
 
-        setFormData({ ...formData, loading: true });
+        setLoading(true);
 
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", formData);
 
-        promisse.then(() => {
-            navigate("/hoje")
-            setFormData({ ...formData, loading: false });
+        promisse.then(({data}) => {
+            console.log(data);
+            setUserData({ 
+                name: data.name,
+                image: data.image,
+                token: data.token 
+            });
+            navigate("/hoje");
+            setLoading(false);
         });
         promisse.catch(() => {
             alert("senha ou email inválidos");
-            setFormData({ ...formData, loading: false });
+            setLoading(false);
         });
     }
 
@@ -41,7 +49,7 @@ function LoginPage () {
                     placeholder="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    disabled={formData.loading}
+                    disabled={loading}
                     required
                 />
                 <Input 
@@ -49,15 +57,15 @@ function LoginPage () {
                     placeholder="senha"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    disabled={formData.loading}
+                    disabled={loading}
                     required
                 />
                 <Button 
                     type="submit"
-                    disabled={formData.loading}
+                    disabled={loading}
                     onClick={() => console.log(formData)
                 }>
-                    {formData.loading ? <Loader type="ThreeDots" color="#FFF" height={70} width={70} timeout={3000}/> : "Entrar"}
+                    {loading ? <Loader type="ThreeDots" color="#FFF" height={70} width={70} timeout={10000}/> : "Entrar"}
                 </Button>
             </Form>
             <span onClick={() => navigate("/cadastro")}>Não tem uma conta? Cadastre-se!</span>
