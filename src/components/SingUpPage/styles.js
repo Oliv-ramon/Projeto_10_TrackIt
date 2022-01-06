@@ -30,7 +30,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 5px;
-`
+`;
 
 const Input = styled.input`
     height: 45px;
@@ -43,6 +43,12 @@ const Input = styled.input`
     font-size: 20px;
     font-weight: 400;
     line-height: 25px;
+    color: #666666;
+
+    :disabled {
+        opacity: 0.7;
+        color: #AFAFAF;
+    }
     
     ::placeholder {
         color: #DBDBDB;
@@ -54,6 +60,19 @@ const Button = styled.button`
 
     background: #52B6FF;
     border-radius: 4.6px;
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+
+    :disabled {
+        opacity: 0.7;
+    }
+
 `
 
 export { Container, Form, Input, Button }
