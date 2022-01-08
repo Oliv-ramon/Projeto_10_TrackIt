@@ -11,6 +11,8 @@ const Footer = styled.footer`
     justify-content: center;
     gap: 32px;
 
+    background-color: #fff;
+
     position: fixed;
     bottom: 0;
     left: 0;
