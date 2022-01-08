@@ -12,7 +12,7 @@ import trashIcon from "../../assets/trashIcon.png"
 function HabitsPage () {
     const { userData, setUserData } = useContext(UserContext);
     const [creatingHabit, setCreatingHabit]  = useState(false);
-    const [habitCreated, setHabitCreated] = useState([]);
+    const [reloadHabits, setReloadHabits] = useState([]);
     const  [habitsData, setHabitsData] = useState({
         name: "",
         days: []
@@ -40,7 +40,7 @@ function HabitsPage () {
             setUserData({ ...userData, habits: response.data })
         });
         promisse.catch((error) => console.log(error.response));
-    },[habitCreated]);
+    },[reloadHabits]);
 
     function toggleCreatingState() {
         console.log(creatingHabit)
@@ -61,7 +61,7 @@ function HabitsPage () {
                   }
             });
 
-            promisse.then(() => setHabitCreated([]))
+            promisse.then(() => setReloadHabits([]))
         }
     }
 
@@ -72,7 +72,7 @@ function HabitsPage () {
     return (
         <Container>
             <Top/>
-            <HabitsContext.Provider value={{ setHabitCreated, setCreatingHabit, habitsData, setHabitsData, weekDays }}>
+            <HabitsContext.Provider value={{ setReloadHabits, setCreatingHabit, habitsData, setHabitsData, weekDays }}>
                 <Habits>
                     <header>
                         Meus Hábitos
@@ -80,21 +80,21 @@ function HabitsPage () {
                     </header>
                     {creatingHabit && <HabitCreator/>}
                     {userData.habits.length === 0 ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!" : userData.habits.map((habit) => (
-                            <Habit>
-                                <img src={trashIcon} alt="deletar hábito" onClick={() => handleDelete(habit.id)}/>
-                                <span>{habit.name}</span>
-                                <WeekDaysButtons>
-                                {weekDays.map(({ day, id }) => (
-                                    <li 
-                                        key={id} 
-                                        id={id}
-                                        className={habit.days.includes(Number(id)) ? "selected"  : ""}
-                                    >
-                                        {day}
-                                    </li>
-                                ))}
-                                </WeekDaysButtons>
-                            </Habit>
+                        <Habit>
+                            <img src={trashIcon} alt="deletar hábito" onClick={() => handleDelete(habit.id)}/>
+                            <span>{habit.name}</span>
+                            <WeekDaysButtons>
+                            {weekDays.map(({ day, id }) => (
+                                <li 
+                                    key={id} 
+                                    id={id}
+                                    className={habit.days.includes(Number(id)) ? "selected"  : ""}
+                                >
+                                    {day}
+                                </li>
+                            ))}
+                            </WeekDaysButtons>
+                        </Habit>
                     ))}
 
                 </Habits>

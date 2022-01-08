@@ -7,7 +7,7 @@ import { CreatorContainer, Options, WeekDaysButtons } from "./style";
 
 function HabitCreator() {
   const { userData } = useContext(UserContext);
-  const { setHabitCreated, setCreatingHabit, habitsData, setHabitsData, weekDays } = useContext(HabitsContext);
+  const { setReloadHabits, setCreatingHabit, habitsData, setHabitsData, weekDays } = useContext(HabitsContext);
   const [loading, setLoading] = useState(false);
 
   function handleHabitCreation({target}) {
@@ -25,7 +25,7 @@ function HabitCreator() {
       console.log(response);
       setLoading(false);
       setHabitsData({ name: "", days: [] });
-      setHabitCreated([]);
+      setReloadHabits([]);
       daysElements.forEach(li => li.classList.remove("selected"));
       setCreatingHabit(false);
     });
@@ -73,10 +73,15 @@ function HabitCreator() {
         ))}
       </WeekDaysButtons>
       <Options>
-        <button disabled={loading} onClick={() => {
-          setCreatingHabit(false)
-          console.log(habitsData)
-          }}>Cancelar</button>
+        <button 
+          disabled={loading} 
+          onClick={() => {
+            setCreatingHabit(false)
+            console.log(habitsData)
+          }}
+        >
+          Cancelar
+        </button>
         <button disabled={loading} onClick={handleHabitCreation}>Salvar</button>
       </Options>
     </CreatorContainer>

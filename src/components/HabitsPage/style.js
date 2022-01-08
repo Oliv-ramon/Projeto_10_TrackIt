@@ -83,7 +83,6 @@ const Habit = styled.div`
 `;
 
 const CreatorContainer = styled.div`
-    width: 340px;
     height: 180px;
     padding: 18px;
 
