@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router";
+import { useContext } from "react/cjs/react.development";
+import UserContext from "../../context/UserContext";
 import { CircularButton, Footer } from "./style";
 
 function Menu () {
-    const navigate  = useNavigate()
+    const navigate  = useNavigate();
+    const { progress } = useContext(UserContext);
     return (
         <Footer>
             <button onClick={() => navigate("/habitos")}>Hábitos</button>
             <button className="today" onClick={() => navigate("/hoje")}>
                 <CircularButton 
-                    value={50} 
+                    value={progress} 
                     background={true}
                     backgroundPadding={6}
                     strokeWidth={9}

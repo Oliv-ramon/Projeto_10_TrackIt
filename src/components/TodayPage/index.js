@@ -25,7 +25,7 @@ function TodayPage() {
 
         promisse.then((response) => {
             setHabits(response.data);
-            setProgress((response.data.filter((habit) => habit.done).length)/(response.data.length)*100)
+            setProgress(Math.round((response.data.filter((habit) => habit.done).length)/(response.data.length)*100))
         });
         promisse.catch(() => navigate("/"))
     },[reloadHabits]);
