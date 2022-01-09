@@ -9,6 +9,12 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 22px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const Header = styled.header`
@@ -23,7 +29,7 @@ const Header = styled.header`
     font-weight: 400;
     font-size: 17.976px;
     line-height: 22px;
-    color: #BABABA;
+    color: ${({progress}) => progress === 0 ? "#BABABA" : "#8FC549"};
   }
 `; 
 
@@ -47,10 +53,18 @@ const HabitContainer = styled.li`
     line-height: 25px;
   }
 
-  span {
+  p {
     font-weight: 400;
     font-size: 12.976px;
     line-height: 16px;
+
+    span:first-child {
+      ${({checked}) => checked && "color: #8FC549;"}
+    }
+
+    span:last-child {
+      ${({current_equal_highest, checked}) => current_equal_highest && checked && "color: #8FC549;"}
+    }
   }
 
   img {

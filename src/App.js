@@ -11,10 +11,11 @@ import UserContext from "./context/UserContext";
 
 function App () {
     const [userData, setUserData] = useState({});
+    const [progress, setProgress] = useState(0);
 
     return (
         <BrowserRouter>
-            <UserContext.Provider value={{ userData, setUserData }}>
+            <UserContext.Provider value={{ userData, setUserData, progress, setProgress }}>
                 <Routes>
                     <Route path="/" element={<LoginPage/>}/>
                     <Route path="/cadastro" element={<SignUpPage/>}/>

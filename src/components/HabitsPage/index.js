@@ -8,6 +8,7 @@ import Top from "../Top";
 import HabitCreator from "./HabitCreator";
 import { Container, Habit, Habits, WeekDaysButtons } from "./style";
 import trashIcon from "../../assets/trashIcon.png"
+import { useNavigate } from "react-router";
 
 function HabitsPage () {
     const { userData, setUserData } = useContext(UserContext);
@@ -17,6 +18,7 @@ function HabitsPage () {
         name: "",
         days: []
     });
+    const navigate = useNavigate();
 
     const weekDays = [
         {day: "D", id: "0"}, 
@@ -39,7 +41,7 @@ function HabitsPage () {
             console.log(response);
             setUserData({ ...userData, habits: response.data })
         });
-        promisse.catch((error) => console.log(error.response));
+        promisse.catch(() => navigate("/"));
     },[reloadHabits]);
 
     function toggleCreatingState() {

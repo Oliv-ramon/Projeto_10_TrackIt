@@ -1,6 +1,7 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useContext, useState } from "react/cjs/react.development";
 import UserContext from "../../context/UserContext";
 
@@ -10,8 +11,10 @@ import Habit from "./Habit";
 import { Container, Header } from "./styles";
 
 function TodayPage() {
-    const { userData } = useContext(UserContext);
+    const { userData, progress, setProgress } = useContext(UserContext);
     const [habits, setHabits] = useState([]);
+    const [reloadHabits, setReloadHabits] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const promisse = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", {
@@ -21,10 +24,11 @@ function TodayPage() {
         });
 
         promisse.then((response) => {
-            console.log(response)
             setHabits(response.data);
+            setProgress((response.data.filter((habit) => habit.done).length)/(response.data.length)*100)
         });
-    },[]);
+        promisse.catch(() => navigate("/"))
+    },[reloadHabits]);
 
     function dateReader() {
         const date = dayjs();
@@ -54,13 +58,17 @@ function TodayPage() {
         <>
             <Top/>
             <Container>
-                <Header>
+                <Header progress={progress}>
                     <h1>{dateReader()}</h1>
-                    <span>Nenhum hábito concluído ainda</span>
+                    <span>{progress === 0 ? "Nenhum hábito concluído ainda" : `${progress}% dos hábitos concluídos`}</span>
                 </Header>
                 <ul>
                     {habits.map((habit) => (
-                        <Habit key={habit.id} {...habit}/>
+                        <Habit 
+                            key={habit.id} 
+                            {...habit} 
+                            setReloadHabits={setReloadHabits}
+                        />
                     ))}
                 </ul>
                 
