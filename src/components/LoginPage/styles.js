@@ -12,7 +12,7 @@ const Container = styled.main`
     img {
         height: 178px;
         width: 180px;
-        margin-top: 51px;
+        margin-top: 61px;
     }
     span {
         font-weight: 400;
