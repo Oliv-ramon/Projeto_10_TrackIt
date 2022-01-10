@@ -43,6 +43,19 @@ const StyledCalendar = styled(Calendar)`
       font-size: 13px;
     }
   }
+
+  .react-calendar__tile {
+    border-radius: 50px;
+  }
+  .red {
+    background: #EA5766;
+    color: #fff;
+  }
+
+  .green {
+    background: #8CC654;
+    color: #fff;
+  }
   /* .react-calendar__month-view__weekdays {
     padding-bottom: 20px;
     div {
