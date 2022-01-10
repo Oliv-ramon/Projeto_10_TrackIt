@@ -20,11 +20,13 @@ function LoginPage () {
     useEffect(() => {
         const localUserData = JSON.parse(localStorage.getItem("userData"));
 
-        const result = window.confirm(`Continuar como ${localUserData.name}?`);
-
-        if (localUserData && result) {
+        
+        if (localUserData) {
+            const result = window.confirm(`Continuar como ${localUserData.name}?`);
+            if(result) {
             setUserData(localUserData);
             navigate("/hoje");
+            }
         }
     },[])
 
