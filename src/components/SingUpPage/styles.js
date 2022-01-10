@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 const Container = styled.main`
     min-height: 100vh;
-    padding-top: 51px;
     padding-bottom: 30px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     img {
+        margin-top: 61px;
         height: 178px;
         width: 180px;
     }
