@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import UserContext from "../../context/UserContext";
 
@@ -16,6 +16,17 @@ function LoginPage () {
         password: ""
     });
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const localUserData = JSON.parse(localStorage.getItem("userData"));
+
+        const result = window.confirm(`Continuar como ${localUserData.name}?`);
+
+        if (localUserData && result) {
+            setUserData(localUserData);
+            navigate("/hoje");
+        }
+    },[])
 
     function handleLogin(e) {
         e.preventDefault();
@@ -31,6 +42,11 @@ function LoginPage () {
                 image: data.image,
                 token: data.token 
             });
+            localStorage.setItem("userData", JSON.stringify({ 
+                name: data.name,
+                image: data.image,
+                token: data.token 
+            }));
             navigate("/hoje");
             setLoading(false);
         });

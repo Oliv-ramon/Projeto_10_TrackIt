@@ -4,6 +4,7 @@ import HabitsContext from "../../context/HabitsContext";
 import UserContext from "../../context/UserContext";
 
 import { CreatorContainer, Options, WeekDaysButtons } from "./style";
+import Loader from "react-loader-spinner";
 
 function HabitCreator() {
   const { userData } = useContext(UserContext);
@@ -82,7 +83,12 @@ function HabitCreator() {
         >
           Cancelar
         </button>
-        <button disabled={loading} onClick={handleHabitCreation}>Salvar</button>
+        <button 
+          disabled={loading} 
+          onClick={handleHabitCreation}
+        >
+          {loading ? <Loader type="ThreeDots" color="#FFF" height={15} width={50} timeout={10000}/> : "Salvar"}
+        </button>
       </Options>
     </CreatorContainer>
   )

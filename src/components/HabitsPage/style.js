@@ -153,7 +153,6 @@ const Options = styled.div`
     font-weight: 400;
     font-size: 15.976px;
     line-height: 20px;
-    text-align: center;
 
     button:first-child {
         color: #52B6FF;
@@ -172,9 +171,14 @@ const Options = styled.div`
 
         color: #fff;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         :disabled {
             opacity: 0.7;
         }
+        
     }
 `;
 

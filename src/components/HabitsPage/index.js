@@ -68,12 +68,19 @@ function HabitsPage () {
     }
 
     if (!userData.habits) {
-        return "carregando";
+        return (
+            <>
+            <Top/>
+            <Container/>
+            <Menu/>
+            </>
+            )
     }
 
     return (
+        <>
+        <Top/>
         <Container>
-            <Top/>
             <HabitsContext.Provider value={{ setReloadHabits, setCreatingHabit, habitsData, setHabitsData, weekDays }}>
                 <Habits>
                     <header>
@@ -101,8 +108,9 @@ function HabitsPage () {
 
                 </Habits>
             </HabitsContext.Provider>
-            <Menu/>
         </Container>
+        <Menu/>
+        </>
     )
 }
 

@@ -11,17 +11,10 @@ function Habit({id, name, done, currentSequence, highestSequence, setReloadHabit
   const { userData } = useContext(UserContext);
   const [checked, setChecked] = useState(done);
 
-  function ckechHabit() {
-    if (checked) {
-      checsksRequest("uncheck");
-      setChecked(false);
-    } else {
-      checsksRequest("check");
-      setChecked(true);
-    }
-  }
+  function checsksRequest() {
+    const action = checked ? "uncheck" : "check";
+    const checkedValue = checked ? false : true;
 
-  function checsksRequest(action) {
     const promisse = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/${action}`, {},{
       headers: {
         Authorization: `Bearer ${userData.token}`
@@ -30,6 +23,7 @@ function Habit({id, name, done, currentSequence, highestSequence, setReloadHabit
     
     promisse.then((response) => {
       setReloadHabits([]);
+      setChecked(checkedValue);
       console.log(response)
     })
     promisse.catch((error) => console.log(error.response))
@@ -39,7 +33,7 @@ function Habit({id, name, done, currentSequence, highestSequence, setReloadHabit
     <HabitContainer current_equal_highest={currentSequence === highestSequence} checked={checked}>
       <h1>{name}</h1>
       <p>Sequência atual: <span>{currentSequence} dias</span><br/>Seu recorde: <span>{highestSequence} dias</span></p>
-      <img src={checked ? greenButton : grayButton} alt="check-button" onClick={(e) => ckechHabit(e)}/>
+      <img src={checked ? greenButton : grayButton} alt="check-button" onClick={checsksRequest}/>
     </HabitContainer>
   )
 }

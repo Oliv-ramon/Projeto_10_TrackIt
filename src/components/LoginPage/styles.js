@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 const Container = styled.main`
     min-height: 100vh;
+    padding-bottom: 30px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 11px;
 
     img {
         height: 178px;
         width: 180px;
+        margin-top: 51px;
     }
     span {
         font-weight: 400;
@@ -26,6 +27,8 @@ const Container = styled.main`
 
 const Form = styled.form`
     width: 303px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     
     display: flex;
     flex-direction: column;

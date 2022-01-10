@@ -25,7 +25,7 @@ function SignUpPage () {
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", formData);
 
         promisse.then(() => {
-            setLoading(false);
+            setLoading(true);
         });
         promisse.catch(() => {
             alert("dados inválidos");

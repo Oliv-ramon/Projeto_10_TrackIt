@@ -18,10 +18,10 @@ const Footer = styled.footer`
     left: 0;
 
     button {
-        font-family: 'Lexend Deca', sans-serif;
         font-weight: 400;
-        font-size: 17.976px;
         line-height: 22px;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: 17.976px;
 
         color: #52B6FF;
     }
@@ -49,6 +49,8 @@ const CircularButton = styled(CircularProgressbar)`
         stroke: #52B6FF;
     }
     text.CircularProgressbar-text {
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: 19.976px;
         fill: #FFFFFF;
     }
 `

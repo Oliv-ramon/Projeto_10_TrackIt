@@ -25,7 +25,10 @@ function TodayPage() {
 
         promisse.then((response) => {
             setHabits(response.data);
-            setProgress(Math.round((response.data.filter((habit) => habit.done).length)/(response.data.length)*100))
+            console.log(response.data)
+            if (response.data.length > 0) {
+                setProgress(Math.round((response.data.filter((habit) => habit.done).length)/(response.data.length)*100));
+            }
         });
         promisse.catch(() => navigate("/"))
     },[reloadHabits]);
@@ -60,7 +63,7 @@ function TodayPage() {
             <Container>
                 <Header progress={progress}>
                     <h1>{dateReader()}</h1>
-                    <span>{progress === 0 ? "Nenhum hábito concluído ainda" : `${progress}% dos hábitos concluídos`}</span>
+                    <span>{progress === 0  ? "Nenhum hábito concluído ainda" : `${progress}% dos hábitos concluídos`}</span>
                 </Header>
                 <ul>
                     {habits.map((habit) => (
