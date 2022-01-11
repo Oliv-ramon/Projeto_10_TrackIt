@@ -1,7 +1,7 @@
 import { Container, Form, Input, Button } from "./styles";
 import logo from "../../assets/logo.png";
 
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";

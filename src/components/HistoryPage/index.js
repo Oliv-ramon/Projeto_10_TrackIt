@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { useContext } from "react/cjs/react.development";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 
 import Menu from "../Menu";

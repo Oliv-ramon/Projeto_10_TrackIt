@@ -2,7 +2,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useContext, useState } from "react/cjs/react.development";
+import { useContext, useState } from "react";
 import UserContext from "../../context/UserContext";
 
 import Menu from "../Menu";

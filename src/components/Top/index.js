@@ -3,7 +3,7 @@ import UserContext from "../../context/UserContext";
 import { Header } from "./style";
 
 import miniLogo from "../../assets/miniLogo.png";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function Top () {
     const { userData } = useContext(UserContext);

@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router";
-import { useContext } from "react/cjs/react.development";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { CircularButton, Footer } from "./style";
 
