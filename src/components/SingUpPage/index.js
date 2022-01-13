@@ -17,7 +17,7 @@ function SignUpPage () {
     });
     const [loading, setLoading] = useState(false)
 
-    function handleLogin(e) {
+    function handleSignUp(e) {
         e.preventDefault();
 
         setLoading(true);
@@ -25,7 +25,7 @@ function SignUpPage () {
         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", formData);
 
         promisse.then(() => {
-            setLoading(true);
+            setLoading(false);
         });
         promisse.catch(() => {
             alert("dados inválidos");
@@ -36,7 +36,7 @@ function SignUpPage () {
     return (
         <Container>
             <img src={logo} alt={"logo"}/>
-            <Form onSubmit={(e) => handleLogin(e)}>
+            <Form onSubmit={(e) => handleSignUp(e)}>
                 <Input 
                     type="email"
                     placeholder="email"
