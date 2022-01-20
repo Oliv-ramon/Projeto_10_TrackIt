@@ -4,7 +4,7 @@ A habits tracking app written in React that allows you to improve your disciplin
 
 ## A gif using the app
 
-![Alt Text](TrackIt.gif)
+![Alt Text](trackit.gif)
 
 ### Try by your self!
 
